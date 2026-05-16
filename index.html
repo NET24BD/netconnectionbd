@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Net Connection BD</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      background:#050816;
+      color:white;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    .container{
+      width:90%;
+      max-width:1200px;
+      margin:auto;
+    }
+
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 0;
+      border-bottom:1px solid rgba(0,255,255,0.1);
+      position:sticky;
+      top:0;
+      background:#050816;
+      z-index:1000;
+    }
+
+    .logo{
+      font-size:24px;
+      font-weight:700;
+      color:#00e5ff;
+    }
+
+    .menu{
+      display:flex;
+      gap:25px;
+    }
+
+    .menu a{
+      color:#cfcfcf;
+      text-decoration:none;
+      transition:0.3s;
+    }
+
+    .menu a:hover{
+      color:#00e5ff;
+    }
+
+    .hero{
+      text-align:center;
+      padding:100px 0;
+    }
+
+    .hero h1{
+      font-size:60px;
+      line-height:1.2;
+    }
+
+    .hero span{
+      color:#00e5ff;
+    }
+
+    .hero p{
+      color:#9ca3af;
+      margin-top:20px;
+      font-size:18px;
+    }
+
+    .hero-buttons{
+      margin-top:40px;
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:14px 30px;
+      border-radius:15px;
+      border:none;
+      cursor:pointer;
+      font-weight:600;
+      transition:0.3s;
+      text-decoration:none;
+      display:inline-block;
+    }
+
+    .btn-primary{
+      background:#00e5ff;
+      color:black;
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-3px);
+      box-shadow:0 0 20px #00e5ff;
+    }
+
+    .btn-outline{
+      background:transparent;
+      border:1px solid #00e5ff;
+      color:#00e5ff;
+    }
+
+    .btn-outline:hover{
+      background:#00e5ff;
+      color:black;
+    }
+
+    section{
+      padding:80px 0;
+    }
+
+    .section-title{
+      text-align:center;
+      color:#00e5ff;
+      font-size:36px;
+      margin-bottom:50px;
+    }
+
+    .package-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .card{
+      background:#0b1228;
+      border:1px solid rgba(0,255,255,0.15);
+      border-radius:25px;
+      padding:35px;
+      transition:0.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-8px);
+      border-color:#00e5ff;
+      box-shadow:0 0 25px rgba(0,229,255,0.2);
+    }
+
+    .speed{
+      color:#00e5ff;
+      font-size:28px;
+      font-weight:700;
+    }
+
+    .price{
+      font-size:48px;
+      margin-top:15px;
+      font-weight:700;
+    }
+
+    .card ul{
+      margin-top:20px;
+      list-style:none;
+    }
+
+    .card ul li{
+      margin:10px 0;
+      color:#d1d5db;
+    }
+
+    .coverage-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:20px;
+    }
+
+    .coverage-box{
+      background:#0b1228;
+      padding:20px;
+      border-radius:18px;
+      text-align:center;
+      border:1px solid rgba(0,255,255,0.15);
+    }
+
+    .apply-section{
+      text-align:center;
+    }
+
+    .apply-btn{
+      padding:18px 45px;
+      font-size:18px;
+    }
+
+    .ftp-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+    }
+
+    .ftp-card{
+      background:#0b1228;
+      border-radius:25px;
+      padding:30px;
+      text-align:center;
+      border:1px solid rgba(0,255,255,0.15);
+    }
+
+    .contact-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+    }
+
+    .contact-box{
+      background:#0b1228;
+      padding:30px;
+      border-radius:20px;
+      text-align:center;
+      border:1px solid rgba(0,255,255,0.15);
+    }
+
+    footer{
+      text-align:center;
+      padding:25px;
+      border-top:1px solid rgba(0,255,255,0.1);
+      color:#9ca3af;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <div class="container">
+
+    <nav>
+
+      <div class="logo">
+        Net Connection BD
+      </div>
+
+      <div class="menu">
+
+        <a href="#">Home</a>
+        <a href="#packages">Packages</a>
+        <a href="#">Coverage</a>
+        <a href="apply.html">Apply</a>
+        <a href="#">Contact</a>
+
+      </div>
+
+    </nav>
+
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <div class="container">
+
+      <h1>High Speed <span>Fiber Internet</span></h1>
+
+      <p>Fast, Secure & Reliable Internet Service</p>
+
+      <div class="hero-buttons">
+
+        <a href="apply.html" class="btn btn-primary">Get Started</a>
+        <a href="#packages" class="btn btn-outline">View Packages</a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- LOGIN LINKS (SAFE ADD - NO DESIGN CHANGE) -->
+  <div class="container" style="text-align:right;margin-top:-40px;margin-bottom:20px;">
+
+    <a href="admin.html" style="color:#00e5ff;margin-right:15px;text-decoration:none;font-weight:500;">
+      Admin Login
+    </a>
+
+    <a href="customer-login.html" style="color:#cfcfcf;text-decoration:none;font-weight:500;">
+      Customer Login
+    </a>
+
+  </div>
+
+  <!-- PACKAGE -->
+  <section id="packages">
+
+    <div class="container">
+
+      <h2 class="section-title">Internet Packages</h2>
+
+      <div class="package-grid">
+
+        <div class="card">
+          <div class="speed">10 Mbps</div>
+          <div class="price">৳500</div>
+        </div>
+
+        <div class="card">
+          <div class="speed">20 Mbps</div>
+          <div class="price">৳800</div>
+        </div>
+
+        <div class="card">
+          <div class="speed">50 Mbps</div>
+          <div class="price">৳1200</div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- COVERAGE -->
+  <section>
+
+    <div class="container">
+
+      <h2 class="section-title">Coverage Area</h2>
+
+      <div class="coverage-grid">
+
+        <div class="coverage-box">Kaliganj</div>
+        <div class="coverage-box">Gazipur</div>
+        <div class="coverage-box">Dhaka</div>
+        <div class="coverage-box">Mirpur</div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- APPLY -->
+  <section class="apply-section">
+
+    <div class="container">
+
+      <h2 class="section-title">New Internet Connection</h2>
+
+      <a href="apply.html" class="btn btn-primary apply-btn">
+        New Line Apply
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- FTP -->
+  <section>
+
+    <div class="container">
+
+      <h2 class="section-title">Free FTP Server</h2>
+
+      <div class="ftp-grid">
+
+        <div class="ftp-card">🎬 Movie Server</div>
+        <div class="ftp-card">📺 Live TV</div>
+        <div class="ftp-card">🎮 Game Server</div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+  <section>
+
+    <div class="container">
+
+      <h2 class="section-title">Contact Us</h2>
+
+      <div class="contact-grid">
+
+        <div class="contact-box">Support: 018XXXXXXXX</div>
+        <div class="contact-box">Email: support@example.com</div>
+        <div class="contact-box">Kaliganj, Bangladesh</div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <footer>
+    © 2026 Net Connection BD
+  </footer>
+
+</body>
+</html>
