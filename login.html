@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login System</title>
+  <style>
+    body{
+      background:#0f172a;
+      color:white;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+      font-family:Arial;
+    }
+
+    .box{
+      background:#1f2937;
+      padding:20px;
+      border-radius:10px;
+      width:300px;
+    }
+
+    input, button{
+      width:100%;
+      padding:10px;
+      margin-top:10px;
+    }
+
+    button{
+      background:#38bdf8;
+      border:none;
+      font-weight:bold;
+      cursor:pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h2>Login</h2>
+  <input id="u" placeholder="Username">
+  <input id="p" placeholder="Password">
+  <button onclick="login()">Login</button>
+</div>
+
+<script>
+const API = "https://script.google.com/macros/library/d/1b-3xBSQ8nQhhyl_Atedn9ovFzu626rkpjhc_RMqllTN6ojXoCAN0xM1L/4";
+
+function login(){
+  fetch(API + "?type=login&username=" + u.value + "&password=" + p.value)
+  .then(res => res.json())
+  .then(data => {
+    if(data.status == "success"){
+      localStorage.setItem("role", data.role);
+      window.location.href = "admin.html";
+    } else {
+      alert("Login Failed");
+    }
+  });
+}
+</script>
+
+</body>
+</html>
