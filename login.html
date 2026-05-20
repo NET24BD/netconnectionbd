@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#000000,#0f172a,#2563eb);
+}
+
+.login-box{
+    width:290px;
+    background:rgba(15,23,42,0.96);
+    border:1px solid rgba(255,255,255,0.08);
+    padding:25px;
+    border-radius:16px;
+    box-shadow:0 0 20px rgba(37,99,235,0.35);
+    text-align:center;
+}
+
+.logo{
+    width:60px;
+    height:60px;
+    margin:auto;
+    margin-bottom:12px;
+    border-radius:50%;
+    background:#2563eb;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:24px;
+    color:white;
+    font-weight:bold;
+    box-shadow:0 0 15px rgba(37,99,235,0.5);
+}
+
+h2{
+    color:white;
+    margin-bottom:18px;
+    font-size:22px;
+}
+
+.input-box{
+    margin-bottom:14px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    outline:none;
+    background:#1e293b;
+    color:white;
+    font-size:14px;
+    border:1px solid transparent;
+    transition:0.3s;
+}
+
+input:focus{
+    border:1px solid #2563eb;
+    box-shadow:0 0 8px rgba(37,99,235,0.5);
+}
+
+input::placeholder{
+    color:#94a3b8;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#1d4ed8;
+    box-shadow:0 0 12px rgba(37,99,235,0.5);
+}
+
+#error{
+    color:#ff4d4d;
+    margin-top:12px;
+    font-size:13px;
+}
+
+.footer{
+    margin-top:16px;
+    color:#94a3b8;
+    font-size:12px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <div class="logo">
+        A
+    </div>
+
+    <h2>Admin Login</h2>
+
+    <div class="input-box">
+        <input type="text" id="username" placeholder="Username">
+    </div>
+
+    <div class="input-box">
+        <input type="password" id="password" placeholder="Password">
+    </div>
+
+    <button onclick="login()">Login</button>
+
+    <p id="error"></p>
+
+    <div class="footer">
+        Secure Panel
+    </div>
+
+</div>
+
+<script>
+
+function login(){
+
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+    let adminUser = "admin";
+    let adminPass = "29552988";
+
+    if(username === adminUser && password === adminPass){
+
+        localStorage.setItem("adminLoggedIn", "true");
+
+        window.location.href = "admin.html";
+
+    }else{
+
+        document.getElementById("error").innerText =
+        "Wrong Username or Password";
+
+    }
+}
+
+</script>
+
+</body>
+</html>
