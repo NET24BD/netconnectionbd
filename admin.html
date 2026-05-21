@@ -6,6 +6,7 @@
 <title>Admin Panel</title>
 
 <style>
+
 body{
     margin:0;
     font-family:Arial;
@@ -33,18 +34,36 @@ body{
     box-shadow:0 0 15px rgba(37,99,235,0.2);
 }
 
+input{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border:none;
+    border-radius:8px;
+    box-sizing:border-box;
+}
+
 button{
     padding:10px 15px;
     border:none;
     border-radius:8px;
-    background:red;
+    background:#2563eb;
     color:white;
     cursor:pointer;
 }
 
 button:hover{
+    background:#1d4ed8;
+}
+
+.logout-btn{
+    background:red;
+}
+
+.logout-btn:hover{
     background:#cc0000;
 }
+
 </style>
 </head>
 
@@ -52,34 +71,140 @@ button:hover{
 
 <div class="header">
     <h3>Admin Dashboard</h3>
-    <button onclick="logout()">Logout</button>
+
+    <button class="logout-btn" onclick="logout()">
+        Logout
+    </button>
 </div>
 
 <div class="container">
+
+    <!-- WELCOME -->
 
     <div class="card">
         <h3>Welcome Admin</h3>
         <p>You are now inside the admin panel.</p>
     </div>
 
+    <!-- STATUS -->
+
     <div class="card">
         <h3>Status</h3>
         <p>System is running properly.</p>
+    </div>
+
+    <!-- ADD PACKAGE -->
+
+    <div class="card">
+
+        <h3>Add Package</h3>
+
+        <input type="text"
+        id="pname"
+        placeholder="Package Name">
+
+        <input type="text"
+        id="pprice"
+        placeholder="Package Price">
+
+        <input type="text"
+        id="pspeed"
+        placeholder="Internet Speed">
+
+        <button onclick="addPackage()">
+            Add Package
+        </button>
+
+    </div>
+
+    <!-- ADD NOTICE -->
+
+    <div class="card">
+
+        <h3>Add Notice</h3>
+
+        <input type="text"
+        id="ntitle"
+        placeholder="Notice Title">
+
+        <input type="text"
+        id="ntext"
+        placeholder="Notice Text">
+
+        <button onclick="addNotice()">
+            Add Notice
+        </button>
+
     </div>
 
 </div>
 
 <script>
 
-// login check
+// LOGIN CHECK
+
 if(localStorage.getItem("adminLoggedIn") !== "true"){
+
     window.location.href = "login.html";
+
 }
 
-// logout function
+// LOGOUT
+
 function logout(){
+
     localStorage.removeItem("adminLoggedIn");
+
     window.location.href = "login.html";
+
+}
+
+// GOOGLE SCRIPT URL
+
+let url =
+"https://script.google.com/macros/s/AKfycbxWR9n_XBrVugdIwkMrRhb7y85kfRJA_6nFWETzk7SldecsIWArS-8vve5Uf3KY5Rxh/exec";
+
+// ADD PACKAGE
+
+function addPackage(){
+
+fetch(
+url +
+"?action=addPackage" +
+"&name=" + document.getElementById("pname").value +
+"&price=" + document.getElementById("pprice").value +
+"&speed=" + document.getElementById("pspeed").value
+)
+
+.then(res => res.text())
+
+.then(data => {
+
+    alert(data);
+
+});
+
+}
+
+// ADD NOTICE
+
+function addNotice(){
+
+fetch(
+url +
+"?action=addNotice" +
+"&title=" + document.getElementById("ntitle").value +
+"&notice=" + document.getElementById("ntext").value
+)
+
+.then(res => res.text())
+
+.then(data => {
+
+    alert(data);
+
+});
+
 }
 
 </script>
