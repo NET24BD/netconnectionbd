@@ -354,13 +354,13 @@ function applyPromo(){
 let code = promoCode.value.trim().toUpperCase();
 
 if(code === "SAVE20"){
-  discount = 160;
+  discount = 200;
 }
 else if(code === "OFF50"){
   discount = 50;
 }
-else{
-  discount = 0;
+else if(code==="HRIDOY500"){
+  discount = 500;
 }
 
 updateUI();
