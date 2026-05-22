@@ -267,9 +267,10 @@ nav{
 <div class="input-group">
 <label>Select Package</label>
 <select id="packageSelect">
-  <option value="500">10 Mbps - 500 BDT</option>
-  <option value="800" selected>20 Mbps - 800 BDT</option>
+  <option value="500">20 Mbps - 500 BDT</option>
+  <option value="800" selected>40 Mbps - 800 BDT</option>
   <option value="1200">50 Mbps - 1200 BDT</option>
+  <option value="800" selected>40 Mbps - 800 BDT</option>
 </select>
 </div>
 
@@ -300,7 +301,7 @@ nav{
 
 <div class="summary-row service">
 <span>Service Charge</span>
-<span>+500 BDT</span>
+<span>+300 BDT</span>
 </div>
 
 <div class="summary-row discount">
@@ -359,8 +360,8 @@ if(code === "SAVE20"){
 else if(code === "OFF50"){
   discount = 50;
 }
-else if(code === "NET500"){
-  discount = 500;
+else if(code === "NET200"){
+  discount = 200;
 }
 
 updateUI();
