@@ -107,9 +107,27 @@ label{
   display:flex;
   justify-content:space-between;
   margin:10px 0;
+  padding:10px 12px;
+  border-radius:10px;
+  transition:0.3s ease;
 }
-  .line span{
-  text-shadow:0 0 8px currentColor;
+
+/* 👉 soft background glow (hover effect) */
+.line:hover{
+  background:rgba(0, 229, 255, 0.06);
+  box-shadow:0 0 10px rgba(0, 229, 255, 0.12);
+}
+
+/* 👉 smooth text (no harsh glow) */
+.line span{
+  text-shadow:none;
+  letter-spacing:0.3px;
+  font-weight:500;
+}
+
+/* 👉 optional: smooth fade feel */
+.bill-box{
+  backdrop-filter: blur(6px);
 }
 
 .total{
