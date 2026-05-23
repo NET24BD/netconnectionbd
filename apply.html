@@ -414,7 +414,8 @@ submitBtn.addEventListener("click", async ()=>{
     update();
 
   }catch(err){
-    alert("Error Occurred!");
+    console.log("FULL ERROR:", err);
+  alert(err?.message || err);
   }
 
   submitBtn.disabled = false;
