@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply Form</title>
+
+<style>
+
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  font-family:Arial;
+  background:#050816;
+  color:white;
+}
+
+.container{
+  max-width:800px;
+  margin:auto;
+  padding:25px 15px;
+}
+
+h1{
+  text-align:center;
+}
+
+h1 span{
+  color:#00e5ff;
+}
+
+.card{
+  background:#08101f;
+  padding:25px;
+  border-radius:15px;
+  border:1px solid rgba(0,229,255,0.2);
+
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.form-group{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+input, select{
+  width:100%;
+  padding:12px;
+  border-radius:8px;
+  border:1px solid #222;
+  background:#050816;
+  color:white;
+  outline:none;
+}
+
+label{
+  font-size:13px;
+  color:#ccc;
+}
+
+.package-box{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.promo{
+  display:flex;
+  gap:10px;
+}
+
+.promo input{
+  flex:1;
+}
+
+.promo button{
+  background:#005eff;
+  border:none;
+  color:white;
+  padding:12px 16px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+#promoMsg{
+  font-size:14px;
+}
+
+.bill-box{
+  background:#050816;
+  padding:18px;
+  border-radius:12px;
+  border:1px solid rgba(0,229,255,0.2);
+}
+
+.line{
+  display:flex;
+  justify-content:space-between;
+  margin:10px 0;
+}
+
+.total{
+  font-size:18px;
+  font-weight:bold;
+  color:#00e5ff;
+}
+
+.submit{
+  width:100%;
+  padding:15px;
+  border:none;
+  border-radius:10px;
+  background:linear-gradient(135deg,#005eff,#00e5ff);
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Apply <span>Now</span></h1>
+
+<div class="card">
+
+<div class="row">
+  <div class="form-group">
+    <label>Name</label>
+    <input id="name">
+  </div>
+
+  <div class="form-group">
+    <label>Phone</label>
+    <input id="phone">
+  </div>
+</div>
+
+<div class="form-group">
+  <label>Email</label>
+  <input id="email">
+</div>
+
+<div class="form-group">
+  <label>Address</label>
+  <input id="address">
+</div>
+
+<div class="form-group">
+  <label>Map Link</label>
+  <input id="map">
+</div>
+
+<div class="package-box">
+  <label>Package</label>
+  <select id="package" onchange="update()">
+    <option value="600">30 Mbps - 600 BDT</option>
+    <option value="800">40 Mbps - 800 BDT</option>
+    <option value="1000">50 Mbps - 1000 BDT</option>
+  </select>
+</div>
+
+<div class="promo">
+  <input id="promo" placeholder="Promo Code">
+  <button onclick="applyPromo()">Apply</button>
+</div>
+
+<div id="promoMsg"></div>
+
+<div class="bill-box">
+
+  <div class="line">
+    <span>Price</span>
+    <span id="price">0 BDT</span>
+  </div>
+
+  <div class="line">
+    <span>Service</span>
+    <span>300 BDT</span>
+  </div>
+
+  <div class="line">
+    <span>Discount</span>
+    <span id="discount">0 BDT</span>
+  </div>
+
+  <hr style="border:1px solid rgba(0,229,255,0.3);">
+
+  <div class="line total">
+    <span>Total</span>
+    <span id="total">0 BDT</span>
+  </div>
+
+</div>
+
+<button class="submit" onclick="submitForm()">Submit Application</button>
+
+</div>
+
+</div>
+
+<script>
+
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyE2l3Nsvpvn6MxyPyNlpCjrqMlalXQ4RFekB8RNp1UKVJZ1dvXbe69uN406O8dOo1j4Q/exec";
+
+let discount = 0;
+const service = 300;
+
+function update(){
+
+  let price = parseInt(document.getElementById("package").value);
+
+  document.getElementById("price").innerText = price + " BDT";
+
+  let total = price + service - discount;
+
+  document.getElementById("discount").innerText = discount + " BDT";
+  document.getElementById("total").innerText = total + " BDT";
+
+}
+
+/* PROMO */
+function applyPromo(){
+
+  let code = document.getElementById("promo").value.trim().toUpperCase();
+  let msg = document.getElementById("promoMsg");
+
+  if(code === "SAVE20"){
+    discount = 200;
+    msg.innerText = "✔ SAVE20 Applied Successfully!";
+    msg.style.color = "lightgreen";
+  }
+  else if(code === "NET200"){
+    discount = 200;
+    msg.innerText = "✔ NET200 Applied Successfully!";
+    msg.style.color = "lightgreen";
+  }
+  else if(code === "OFF50"){
+    discount = 50;
+    msg.innerText = "✔ OFF50 Applied Successfully!";
+    msg.style.color = "lightgreen";
+  }
+  else{
+    discount = 0;
+    msg.innerText = "✖ Invalid Promo Code!";
+    msg.style.color = "red";
+  }
+
+  update();
+}
+
+/* VALIDATION + SUBMIT */
+function submitForm(){
+
+  let name = document.getElementById("name").value.trim();
+  let phone = document.getElementById("phone").value.trim();
+  let email = document.getElementById("email").value.trim();
+  let address = document.getElementById("address").value.trim();
+  let map = document.getElementById("map").value.trim();
+
+  if(!name || !phone || !email || !address || !map){
+    alert("⚠ Please fill all fields!");
+    return;
+  }
+
+  if(!/^01\d{9}$/.test(phone)){
+    alert("⚠ Invalid phone number!");
+    return;
+  }
+
+  fetch(SCRIPT_URL,{
+    method:"POST",
+    headers:{
+      "Content-Type":"text/plain"
+    },
+    body:JSON.stringify({
+      name:name,
+      phone:phone,
+      email:email,
+      address:address,
+      map:map,
+      package:document.getElementById("package").value,
+      service:300,
+      price:parseInt(document.getElementById("package").value),
+      discount:discount,
+      promo:document.getElementById("promo").value
+    })
+  })
+  .then(res=>res.text())
+  .then(()=>{
+    alert("✅ Submitted Successfully!");
+  })
+  .catch(err=>{
+    alert("❌ Error: " + err);
+  });
+
+}
+
+update();
+
+</script>
+
+</body>
+</html>
