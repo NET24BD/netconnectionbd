@@ -307,9 +307,10 @@ function submitForm(){
       email:email,
       address:address,
       map:map,
-      package:document.getElementById("package").value,
-      service:300,
-      price:parseInt(document.getElementById("package").value),
+      const packageSelect = document.getElementById("package");
+
+      const packageText = packageSelect.options[packageSelect.selectedIndex].text;
+      const packageValue = parseInt(packageSelect.value);
       discount:discount,
       promo:document.getElementById("promo").value
     })
