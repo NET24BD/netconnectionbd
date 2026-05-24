@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Apply Form</title>
+
+<style>
+
+/* ===== SAME YOUR FULL CSS ===== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial, sans-serif;
+  background:#050816;
+  color:white;
+}
+
+.container{
+  width:100%;
+  max-width:650px;
+  margin:auto;
+  padding:40px 16px;
+}
+
+h1{
+  text-align:center;
+  margin-bottom:25px;
+  font-size:42px;
+  font-weight:700;
+}
+
+h1 span{
+  color:#00e5ff;
+}
+
+.card{
+  background:#08101f;
+  border:1px solid rgba(0,229,255,0.18);
+  border-radius:18px;
+  padding:22px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+input,
+select{
+  width:100%;
+  height:54px;
+  padding:0 15px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:#050816;
+  color:white;
+  outline:none;
+  font-size:15px;
+}
+
+.promo{
+  display:flex;
+  gap:10px;
+}
+
+.promo input{ flex:1; }
+
+.promo button{
+  min-width:95px;
+  border:none;
+  border-radius:10px;
+  background:#0b63ff;
+  color:white;
+  cursor:pointer;
+}
+
+#promoMsg{
+  font-size:14px;
+}
+
+.bill-box{
+  background:#050816;
+  border:1px solid rgba(0,229,255,0.16);
+  border-radius:14px;
+  padding:16px;
+}
+
+.line{
+  display:flex;
+  justify-content:space-between;
+  padding:8px 2px;
+}
+
+.price span{ color:#00ff66; }
+.service span{ color:#d7e8ff; }
+.discount span{ color:#ff4d4d; }
+.total span{ color:#00e5ff; font-weight:700; }
+
+.submit{
+  width:100%;
+  height:55px;
+  border:none;
+  border-radius:12px;
+  background:linear-gradient(90deg,#0b63ff,#00cfff);
+  color:white;
+  font-size:18px;
+  cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Apply <span>Now</span></h1>
+
+<div class="card">
+
+<div class="row">
+  <input id="name" placeholder="Full Name">
+  <input id="phone" placeholder="Phone Number">
+</div>
+
+<input id="email" placeholder="Email Address">
+<input id="address" placeholder="Address">
+<input id="map" placeholder="Location / Map Link">
+
+<select id="package">
+  <option value="600">30 Mbps - 600 BDT</option>
+  <option value="800">40 Mbps - 800 BDT</option>
+  <option value="1000">50 Mbps - 1000 BDT</option>
+</select>
+
+<div class="promo">
+  <input id="promo" placeholder="Promo Code">
+  <button onclick="applyPromo()">Apply</button>
+</div>
+
+<div id="promoMsg"></div>
+
+<div class="bill-box">
+
+  <div class="line price">
+    <span>Price</span>
+    <span id="price">600 BDT</span>
+  </div>
+
+  <div class="line service">
+    <span>Service</span>
+    <span>300 BDT</span>
+  </div>
+
+  <div class="line discount">
+    <span>Discount</span>
+    <span id="discount">0 BDT</span>
+  </div>
+
+  <div class="line total">
+    <span>Total</span>
+    <span id="total">900 BDT</span>
+  </div>
+
+</div>
+
+<button class="submit" onclick="submitForm()">
+  Submit Application
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+const SCRIPT_URL = "YOUR_SCRIPT_URL";
+
+let discount = 0;
+const serviceCharge = 300;
+
+function updatePrice(){
+
+  const packageValue = parseInt(document.getElementById("package").value);
+
+  document.getElementById("price").innerText = packageValue + " BDT";
+
+  const total = packageValue + serviceCharge - discount;
+
+  document.getElementById("discount").innerText = discount + " BDT";
+  document.getElementById("total").innerText = total + " BDT";
+}
+
+function applyPromo(){
+
+  const code = document.getElementById("promo").value.trim().toUpperCase();
+  const msg = document.getElementById("promoMsg");
+
+  if(code === "SAVE20"){
+    discount = 200;
+    msg.innerText = "✔ Promo Applied";
+    msg.style.color = "#00ff99";
+  }else{
+    discount = 0;
+    msg.innerText = "✖ Invalid Code";
+    msg.style.color = "#ff4d4d";
+  }
+
+  updatePrice();
+}
+
+/* ===== FIXED SUBMIT (INVOICE ADDED) ===== */
+function submitForm(){
+
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const address = document.getElementById("address").value.trim();
+  const map = document.getElementById("map").value.trim();
+
+  if(!name || !phone || !email || !address || !map){
+    alert("Please fill all fields");
+    return;
+  }
+
+  const packageSelect = document.getElementById("package");
+  const packageText = packageSelect.options[packageSelect.selectedIndex].text;
+  const packageValue = parseInt(packageSelect.value);
+
+  const total = packageValue + serviceCharge - discount;
+
+  fetch(SCRIPT_URL,{
+    method:"POST",
+    headers:{
+      "Content-Type":"text/plain"
+    },
+    body:JSON.stringify({
+      name, phone, email, address, map,
+      package:packageText,
+      price:packageValue,
+      service:serviceCharge,
+      discount:discount,
+      total:total,
+      promo:document.getElementById("promo").value
+    })
+  })
+  .then(()=>{
+
+    // ✅ INVOICE SYSTEM ADDED (NO CHANGE TO OLD FLOW)
+    localStorage.setItem("invoiceData", JSON.stringify({
+      name,
+      phone,
+      email,
+      address,
+      map,
+      package:packageText,
+      price:packageValue,
+      discount
+    }));
+
+    window.location.href = "invoice.html";
+
+  })
+  .catch(err=>{
+    alert("Error: " + err);
+  });
+
+}
+
+updatePrice();
+
+</script>
+
+</body>
+</html>
