@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Net Connect BD Invoice</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial, sans-serif;
+  background:#eef3ff;
+  padding:20px;
+  color:#111;
+}
+
+/* ===== INVOICE BOX ===== */
+.invoice{
+  max-width:700px;
+  margin:auto;
+  background:#fff;
+  padding:25px;
+  border-radius:12px;
+  border:1px solid #dbe7ff;
+}
+
+/* COMPANY */
+.company{
+  text-align:center;
+  font-size:26px;
+  font-weight:800;
+  color:#2563eb;
+  margin-bottom:5px;
+}
+
+/* SUB */
+.sub{
+  text-align:center;
+  font-size:13px;
+  color:#666;
+  margin-bottom:15px;
+}
+
+/* ROW */
+.line{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:8px 0;
+  border-bottom:1px solid #f1f1f1;
+  font-size:14px;
+}
+
+.line span:first-child{
+  color:#555;
+}
+
+.line span:last-child{
+  font-weight:600;
+  color:#111;
+}
+
+/* COLORS */
+.price span:last-child{
+  color:#16a34a;
+}
+
+.service span:last-child{
+  color:#2563eb;
+}
+
+.discount span:last-child{
+  color:#dc2626;
+}
+
+/* TOTAL */
+.total{
+  margin-top:10px;
+  padding-top:10px;
+  border-top:2px solid #2563eb;
+  font-size:18px;
+  font-weight:800;
+  color:#2563eb;
+}
+
+/* BUTTON */
+.btn{
+  width:100%;
+  margin-top:15px;
+  padding:12px;
+  border:none;
+  border-radius:8px;
+  background:#2563eb;
+  color:#fff;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+/* PRINT */
+@page{
+  size:A4;
+  margin:10mm;
+}
+
+@media print{
+  body{
+    background:#fff !important;
+    padding:0;
+  }
+
+  .invoice{
+    width:100% !important;
+    max-width:100% !important;
+    border:none !important;
+    box-shadow:none !important;
+    padding:10px !important;
+  }
+
+  .btn{
+    display:none !important;
+  }
+
+  .company{
+    color:#000 !important;
+  }
+
+  .sub{
+    color:#333 !important;
+  }
+
+  .line{
+    border-bottom:1px solid #eee !important;
+    font-size:13px !important;
+  }
+
+  .price span:last-child,
+  .service span:last-child,
+  .discount span:last-child{
+    color:#000 !important;
+  }
+
+  .total{
+    color:#000 !important;
+    border-top:2px solid #000 !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="invoice">
+
+  <div class="company">Net Connect BD</div>
+  <div class="sub">Internet Service Invoice</div>
+
+  <div class="line">
+    <span>Name</span>
+    <span id="name">-</span>
+  </div>
+
+  <div class="line">
+    <span>Phone</span>
+    <span id="phone">-</span>
+  </div>
+
+  <div class="line">
+    <span>Address</span>
+    <span id="address">-</span>
+  </div>
+
+  <div class="line">
+    <span>Package</span>
+    <span id="package">-</span>
+  </div>
+
+  <div class="line price">
+    <span>Price</span>
+    <span id="price">0 BDT</span>
+  </div>
+
+  <div class="line service">
+    <span>Service</span>
+    <span>300 BDT</span>
+  </div>
+
+  <div class="line discount">
+    <span>Discount</span>
+    <span id="discount">0 BDT</span>
+  </div>
+
+  <div class="line total">
+    <span>Total</span>
+    <span id="total">0 BDT</span>
+  </div>
+
+  <button class="btn" onclick="window.print()">Print / Save PDF</button>
+
+</div>
+
+<script>
+// GET DATA FROM LOCALSTORAGE
+const data = JSON.parse(localStorage.getItem("invoiceData") || "{}");
+
+// SAFE VALUES
+let price = Number(data.price) || 0;
+let discount = Number(data.discount) || 0;
+let service = 300;
+
+// ELEMENTS
+const set = (id, value) => {
+  const el = document.getElementById(id);
+  if(el) el.innerText = value;
+}
+
+// SET DATA
+set("name", data.name || "-");
+set("phone", data.phone || "-");
+set("address", data.address || "-");
+set("package", data.package || "-");
+
+set("price", price + " BDT");
+set("discount", discount + " BDT");
+
+// TOTAL
+let total = price + service - discount;
+set("total", total + " BDT");
+
+</script>
+
+</body>
+</html>
