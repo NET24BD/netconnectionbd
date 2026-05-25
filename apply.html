@@ -272,9 +272,10 @@ nav{
 <div class="input-group">
 <label>Package</label>
 <select id="packageSelect">
-  <option value="500">10 Mbps - 500</option>
-  <option value="800" selected>20 Mbps - 800</option>
-  <option value="1200">50 Mbps - 1200</option>
+  <option value="500">20 Mbps - 500</option>
+  <option value="600" selected>30 Mbps - 600</option>
+  <option value="800">40 Mbps - 800</option>
+  <option value="1000">50 Mbps - 1000</option>
 </select>
 </div>
 
@@ -296,7 +297,7 @@ nav{
 
 <div class="summary-row service">
 <span>Service</span>
-<span>+500</span>
+<span>+350</span>
 </div>
 
 <div class="summary-row discount">
@@ -346,6 +347,7 @@ function applyPromo(){
   const validCodes = {
     "SAVE20": 160,
     "OFF50": 50
+    "OFF30": 200
   };
 
   if(code === ""){
@@ -369,7 +371,7 @@ function applyPromo(){
 
 function updateUI(){
 
-  let total = price + 500 - discount;
+  let total = price + 350 - discount;
 
   document.getElementById("packagePrice").innerText = price;
   document.getElementById("discountAmount").innerText = discount;
