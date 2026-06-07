@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NexonetX Dashboard</title>
 
 <style>
@@ -15,243 +14,201 @@
 }
 
 body{
-    background: radial-gradient(circle at top, #0b1a33, #050914);
+    background:#0b1230;
     color:white;
-    min-height:100vh;
-    padding:30px;
 }
 
-/* TOP BAR */
+/* TOPBAR */
 .topbar{
-    width:100%;
-    background: rgba(17,28,51,0.7);
-    backdrop-filter: blur(10px);
-    border-radius:18px;
-    padding:20px;
+    height:70px;
+    background:#141d42;
     display:flex;
-    justify-content:space-between;
+    justify-content:flex-end;
     align-items:center;
-    margin-bottom:30px;
-    border:1px solid rgba(255,255,255,0.08);
+    padding:0 25px;
+    border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-.logo{
-    font-size:26px;
-    font-weight:bold;
-    color:#4da3ff;
-}
-
-.user-box{
+.right-section{
     display:flex;
     align-items:center;
     gap:15px;
 }
 
-.username{
-    color:#dbeafe;
+.profile-avatar{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#5b6ee1,#7282ff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    font-size:18px;
 }
 
-.logout-btn{
-    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+.logout{
+    background:#5b6ee1;
     border:none;
-    padding:10px 16px;
-    border-radius:10px;
     color:white;
+    padding:10px 18px;
+    border-radius:10px;
     cursor:pointer;
+    font-weight:bold;
+    transition:.3s;
 }
 
-/* GRID */
-.server-grid{
+.logout:hover{
+    background:#7282ff;
+}
+
+/* LAYOUT */
+.container{
+    display:flex;
+    min-height:calc(100vh - 70px);
+}
+
+/* SIDEBAR */
+.sidebar{
+    width:250px;
+    background:#141d42;
+    padding:20px;
+    border-right:1px solid rgba(255,255,255,.08);
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#6d7cff;
+    margin-bottom:20px;
+}
+
+/* MAIN */
+.main{
+    flex:1;
+    padding:30px;
+}
+
+.title{
+    font-size:30px;
+    margin-bottom:25px;
+}
+
+/* CARDS */
+.card-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
     gap:20px;
 }
 
-/* CARD (UNIQUE GLASS STYLE) */
 .server-card{
-    position:relative;
-    overflow:hidden;
-    background: rgba(255,255,255,0.05);
-    border:1px solid rgba(255,255,255,0.1);
-    border-radius:20px;
+    background:#18224b;
+    border-radius:18px;
     padding:22px;
     text-decoration:none;
     color:white;
-    transition:0.4s;
-    backdrop-filter: blur(8px);
-}
-
-/* glow effect */
-.server-card::before{
-    content:"";
-    position:absolute;
-    top:-50%;
-    left:-50%;
-    width:200%;
-    height:200%;
-    background: radial-gradient(circle, rgba(77,163,255,0.15), transparent 60%);
-    transform:rotate(25deg);
-    transition:0.5s;
-}
-
-.server-card:hover::before{
-    transform:rotate(0deg);
+    border:1px solid rgba(255,255,255,.05);
+    transition:.3s;
 }
 
 .server-card:hover{
-    transform:translateY(-8px) scale(1.02);
-    border-color:#4da3ff;
-    box-shadow:0 10px 30px rgba(77,163,255,0.25);
+    background:#5b6ee1;
+    transform:translateY(-5px);
+    box-shadow:0 10px 25px rgba(91,110,225,.35);
 }
 
-.server-name{
-    font-size:18px;
-    font-weight:bold;
-    color:#4da3ff;
-    margin-bottom:8px;
-}
-
-.server-icon{
-    font-size:22px;
+.server-card h3{
     margin-bottom:10px;
 }
 
-.status{
-    display:inline-block;
-    margin-top:10px;
-    padding:5px 12px;
-    border-radius:20px;
-    font-size:12px;
-    font-weight:bold;
+.server-card p{
+    color:#d7dcff;
+    margin-bottom:10px;
 }
 
-.online{
-    background:linear-gradient(135deg,#16a34a,#22c55e);
-}
+/* RESPONSIVE */
+@media(max-width:900px){
+    .container{
+        flex-direction:column;
+    }
 
-.offline{
-    background:linear-gradient(135deg,#ff3b3b,#ff1f1f);
+    .sidebar{
+        width:100%;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- TOP BAR -->
+<!-- TOPBAR -->
 <div class="topbar">
-    <div class="logo">NexonetX</div>
 
-    <div class="user-box">
-        <div class="username">Welcome Customer</div>
-        <button class="logout-btn" id="logoutBtn">Logout</button>
+    <div class="right-section">
+        <div class="profile-avatar">F</div>
+        <button class="logout" id="logoutBtn">Logout</button>
     </div>
-</div>
-
-<!-- GRID -->
-<div class="server-grid">
-
-    <!-- 15 UNIQUE CARDS -->
-    <a href="https://play.roarzone.net/web/index.html#!/home" target="_blank" class="server-card">
-
-        
-        <div class="server-name">Roarzone</div>
-
-        
-        <div class="status online">ONLINE</div>
-    </a>
-
-    <a href="#" class="server-card">
-        <div class="server-icon">🎬</div>
-        <div class="server-name">FTP Server 2</div>
-        <div class="status online">ONLINE</div>
-    </a>
-
-    <a href="#" class="server-card">
-        <div class="server-icon">📡</div>
-        <div class="server-name">FTP Server 3</div>
-        <div class="status online">ONLINE</div>
-    </a>
-
-    <a href="#" class="server-card">
-        <div class="server-icon">💾</div>
-        <div class="server-name">FTP Server 4</div>
-        <div class="status offline">OFFLINE</div>
-    </a>
-
-    <a href="#" class="server-card">
-        <div class="server-icon">📺</div>
-        <div class="server-name">FTP Server 5</div>
-        <div class="status offline">OFFLINE</div>
-    </a>
-
-    <a href="#" class="server-card">
-        <div class="server-icon">⚡</div>
-        <div class="server-name">FTP Server 6</div>
-        <div class="status online">ONLINE</div>
-    </a>
-
-    <a href="#" class="server-card">
-        <div class="server-icon">🌐</div>
-        <div class="server-name">FTP Server 7</div>
-        <div class="status online">ONLINE</div>
-    </a>
-
-    <a href="#" class="server-card">
-        <div class="server-icon">📦</div>
-        <div class="server-name">FTP Server 8</div>
-        <div class="status offline">OFFLINE</div>
-    </a>
-
-    <a href="#" class="server-card">
-        <div class="server-icon">🛰️</div>
-        <div class="server-name">FTP Server 9</div>
-        <div class="status online">ONLINE</div>
-    </a>
-
-    <a href="#" class="server-card">
-        <div class="server-icon">🖥️</div>
-        <div class="server-name">FTP Server 10</div>
-        <div class="status online">ONLINE</div>
-    </a>
-
-    <a href="#" class="server-card">
-        <div class="server-icon">🔒</div>
-        <div class="server-name">FTP Server 11</div>
-        <div class="status offline">OFFLINE</div>
-    </a>
-
-    <a href="#" class="server-card">
-        <div class="server-icon">📊</div>
-        <div class="server-name">FTP Server 12</div>
-        <div class="status online">ONLINE</div>
-    </a>
-
-    <a href="#" class="server-card">
-        <div class="server-icon">🎮</div>
-        <div class="server-name">FTP Server 13</div>
-        <div class="status offline">OFFLINE</div>
-    </a>
-
-    <a href="#" class="server-card">
-        <div class="server-icon">🧠</div>
-        <div class="server-name">FTP Server 14</div>
-        <div class="status online">ONLINE</div>
-    </a>
-
-    <a href="#" class="server-card">
-        <div class="server-icon">🚀</div>
-        <div class="server-name">FTP Server 15</div>
-        <div class="status offline">OFFLINE</div>
-    </a>
 
 </div>
 
-<!-- LOGOUT -->
+<!-- SIDEBAR + MAIN -->
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="logo">NexonetX</div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+
+        <h1 class="title">FTP & Media Servers</h1>
+
+        <div class="card-grid">
+
+            <a href="http://new.circleftp.net/" target="_blank" class="server-card">
+                <h3>Circle FTP</h3>
+                <p>Movies & Entertainment Server</p>
+            </a>
+
+            <a href="https://ctgmovies.com/" target="_blank" class="server-card">
+                <h3>CTG Movies</h3>
+                <p>Latest Movies</p>
+            </a>
+
+            <a href="http://play.starplex.live/" target="_blank" class="server-card">
+                <h3>Starplex</h3>
+                <p>Streaming Platform</p>
+            </a>
+
+            <a href="https://itcnbd.live/" target="_blank" class="server-card">
+                <h3>Live TV</h3>
+                <p>TV Channels</p>
+            </a>
+
+            <a href="#" class="server-card"><h3>FTPBD</h3><p>Fast Server</p></a>
+            <a href="#" class="server-card"><h3>RoarZone</h3><p>Media Content</p></a>
+            <a href="#" class="server-card"><h3>Movie Hub</h3><p>Collection</p></a>
+            <a href="#" class="server-card"><h3>TV Plus</h3><p>Shows</p></a>
+            <a href="#" class="server-card"><h3>Anime World</h3><p>Anime</p></a>
+            <a href="#" class="server-card"><h3>Sports Live</h3><p>Sports</p></a>
+            <a href="#" class="server-card"><h3>Kids Zone</h3><p>Kids</p></a>
+            <a href="#" class="server-card"><h3>Music Hub</h3><p>Music</p></a>
+            <a href="#" class="server-card"><h3>Premium Vault</h3><p>Premium</p></a>
+            <a href="#" class="server-card"><h3>Download Zone</h3><p>Files</p></a>
+            <a href="#" class="server-card"><h3>Archive</h3><p>Old Content</p></a>
+
+        </div>
+
+    </div>
+
+</div>
+
 <script>
 document.getElementById("logoutBtn").addEventListener("click", function () {
     localStorage.clear();
     sessionStorage.clear();
-    window.location.replace("customer-login.html");
+    window.location.href = "customer-login.html";
 });
 </script>
 
