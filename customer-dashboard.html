@@ -30,7 +30,6 @@ body{
     border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-/* PROFILE + LOGOUT */
 .right-section{
     display:flex;
     align-items:center;
@@ -70,7 +69,7 @@ body{
     min-height:calc(100vh - 70px);
 }
 
-/* SIDEBAR FIXED */
+/* SIDEBAR */
 .sidebar{
     width:250px;
     flex-shrink:0;
@@ -79,7 +78,6 @@ body{
     border-right:1px solid rgba(255,255,255,.08);
 }
 
-/* LOGO */
 .logo{
     font-size:28px;
     font-weight:bold;
@@ -87,7 +85,7 @@ body{
     margin-bottom:20px;
 }
 
-/* MAIN FIX */
+/* MAIN */
 .main{
     flex:1;
     min-width:0;
@@ -107,6 +105,7 @@ body{
     gap:20px;
 }
 
+/* CARD */
 .server-card{
     background:#18224b;
     border-radius:18px;
@@ -115,6 +114,7 @@ body{
     color:white;
     border:1px solid rgba(255,255,255,.05);
     transition:0.3s;
+    position:relative;
 }
 
 .server-card:hover{
@@ -123,12 +123,25 @@ body{
     box-shadow:0 10px 25px rgba(91,110,225,0.3);
 }
 
-.server-card h3{
-    margin-bottom:10px;
+/* STATUS BADGE */
+.status{
+    position:absolute;
+    top:12px;
+    right:12px;
+    font-size:11px;
+    padding:4px 10px;
+    border-radius:20px;
+    font-weight:bold;
 }
 
-.server-card p{
-    color:#d7dcff;
+.online{
+    background:#22c55e;
+    color:white;
+}
+
+.offline{
+    background:#ef4444;
+    color:white;
 }
 
 /* RESPONSIVE */
@@ -172,34 +185,62 @@ body{
             <a href="http://new.circleftp.net/" class="server-card" target="_blank">
                 <h3>Circle FTP</h3>
                 <p>Movies & Entertainment</p>
+                <span class="status online">ONLINE</span>
             </a>
 
             <a href="https://ctgmovies.com/" class="server-card" target="_blank">
                 <h3>CTG Movies</h3>
                 <p>Latest Movies</p>
+                <span class="status online">ONLINE</span>
             </a>
 
             <a href="http://play.starplex.live/" class="server-card" target="_blank">
                 <h3>Starplex</h3>
                 <p>Streaming Platform</p>
+                <span class="status online">ONLINE</span>
             </a>
 
             <a href="https://itcnbd.live/" class="server-card" target="_blank">
                 <h3>Live TV</h3>
                 <p>TV Channels</p>
+                <span class="status online">ONLINE</span>
             </a>
 
-            <a href="#" class="server-card"><h3>FTPBD</h3><p>Fast Server</p></a>
-            <a href="#" class="server-card"><h3>RoarZone</h3><p>Media Content</p></a>
-            <a href="#" class="server-card"><h3>Movie Hub</h3><p>Collection</p></a>
-            <a href="#" class="server-card"><h3>TV Plus</h3><p>Shows</p></a>
-            <a href="#" class="server-card"><h3>Anime World</h3><p>Anime</p></a>
-            <a href="#" class="server-card"><h3>Sports Live</h3><p>Sports</p></a>
-            <a href="#" class="server-card"><h3>Kids Zone</h3><p>Kids</p></a>
-            <a href="#" class="server-card"><h3>Music Hub</h3><p>Music</p></a>
-            <a href="#" class="server-card"><h3>Premium Vault</h3><p>Premium</p></a>
-            <a href="#" class="server-card"><h3>Download Zone</h3><p>Files</p></a>
-            <a href="#" class="server-card"><h3>Archive</h3><p>Old Content</p></a>
+            <a href="#" class="server-card">
+                <h3>FTPBD</h3>
+                <p>Fast Server</p>
+                <span class="status offline">OFFLINE</span>
+            </a>
+
+            <a href="#" class="server-card">
+                <h3>RoarZone</h3>
+                <p>Media Content</p>
+                <span class="status offline">OFFLINE</span>
+            </a>
+
+            <a href="#" class="server-card">
+                <h3>Movie Hub</h3>
+                <p>Collection</p>
+                <span class="status offline">OFFLINE</span>
+            </a>
+
+            <a href="#" class="server-card">
+                <h3>TV Plus</h3>
+                <p>Shows</p>
+                <span class="status online">ONLINE</span>
+            </a>
+
+            <a href="#" class="server-card">
+                <h3>Anime World</h3>
+                <p>Anime</p>
+                <span class="status online">ONLINE</span>
+            </a>
+
+            <a href="#" class="server-card">
+                <h3>Sports Live</h3>
+                <p>Sports</p>
+                <span class="status offline">OFFLINE</span>
+            </a>
 
         </div>
 
