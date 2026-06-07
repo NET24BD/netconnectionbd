@@ -45,7 +45,6 @@ body{
     align-items:center;
     justify-content:center;
     font-weight:bold;
-    font-size:18px;
 }
 
 .logout{
@@ -55,21 +54,15 @@ body{
     padding:10px 18px;
     border-radius:10px;
     cursor:pointer;
-    transition:0.3s;
 }
 
-.logout:hover{
-    background:#7282ff;
-}
-
-/* MAIN LAYOUT */
+/* LAYOUT */
 .container{
     display:flex;
     width:100%;
     min-height:calc(100vh - 70px);
 }
 
-/* SIDEBAR */
 .sidebar{
     width:250px;
     flex-shrink:0;
@@ -82,66 +75,90 @@ body{
     font-size:28px;
     font-weight:bold;
     color:#6d7cff;
-    margin-bottom:20px;
 }
 
-/* MAIN */
 .main{
     flex:1;
     min-width:0;
     padding:30px;
 }
 
-/* TITLE */
 .title{
     font-size:30px;
     margin-bottom:25px;
 }
 
-/* GRID CARDS */
+/* GRID */
 .card-grid{
     display:grid;
     grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
     gap:20px;
 }
 
-/* CARD */
+/* 🔥 NEW PREMIUM CARD DESIGN */
 .server-card{
-    background:#18224b;
-    border-radius:18px;
-    padding:22px;
+    background:linear-gradient(135deg,#18224b,#101a3a);
+    border-radius:20px;
+    padding:25px;
     text-decoration:none;
     color:white;
-    border:1px solid rgba(255,255,255,.05);
-    transition:0.3s;
+    border:1px solid rgba(255,255,255,0.06);
+    transition:0.35s ease;
+    position:relative;
+    overflow:hidden;
+}
+
+/* glow effect */
+.server-card::before{
+    content:"";
+    position:absolute;
+    top:-50%;
+    left:-50%;
+    width:200%;
+    height:200%;
+    background:radial-gradient(circle, rgba(91,110,225,0.15), transparent 60%);
+    transform:rotate(25deg);
+}
+
+/* hover */
+.server-card:hover{
+    transform:translateY(-10px) scale(1.03);
+    box-shadow:0 15px 35px rgba(91,110,225,0.35);
+    border-color:#5b6ee1;
+}
+
+/* text */
+.server-card h3{
+    font-size:18px;
+    margin-bottom:8px;
     position:relative;
 }
 
-.server-card:hover{
-    transform:translateY(-6px);
-    background:#5b6ee1;
-    box-shadow:0 10px 25px rgba(91,110,225,0.3);
+.server-card p{
+    font-size:13px;
+    color:#b8c1ff;
+    position:relative;
 }
 
-/* STATUS BADGE */
+/* STATUS */
 .status{
     position:absolute;
-    top:12px;
-    right:12px;
+    top:15px;
+    right:15px;
     font-size:11px;
-    padding:4px 10px;
+    padding:5px 12px;
     border-radius:20px;
     font-weight:bold;
+    letter-spacing:0.5px;
+    z-index:2;
 }
 
 .online{
-    background:#22c55e;
-    color:white;
+    background:linear-gradient(135deg,#22c55e,#16a34a);
 }
 
 .offline{
-    background:#ef4444;
-    color:white;
+    background:linear-gradient(135deg,#ef4444,#b91c1c);
 }
 
 /* RESPONSIVE */
@@ -183,63 +200,63 @@ body{
         <div class="card-grid">
 
             <a href="http://new.circleftp.net/" class="server-card" target="_blank">
+                <span class="status online">ONLINE</span>
                 <h3>Circle FTP</h3>
                 <p>Movies & Entertainment</p>
-                <span class="status online">ONLINE</span>
             </a>
 
             <a href="https://ctgmovies.com/" class="server-card" target="_blank">
+                <span class="status online">ONLINE</span>
                 <h3>CTG Movies</h3>
                 <p>Latest Movies</p>
-                <span class="status online">ONLINE</span>
             </a>
 
             <a href="http://play.starplex.live/" class="server-card" target="_blank">
+                <span class="status online">ONLINE</span>
                 <h3>Starplex</h3>
                 <p>Streaming Platform</p>
-                <span class="status online">ONLINE</span>
             </a>
 
             <a href="https://itcnbd.live/" class="server-card" target="_blank">
+                <span class="status online">ONLINE</span>
                 <h3>Live TV</h3>
                 <p>TV Channels</p>
-                <span class="status online">ONLINE</span>
             </a>
 
             <a href="#" class="server-card">
+                <span class="status offline">OFFLINE</span>
                 <h3>FTPBD</h3>
-                <p>Fast Server</p>
-                <span class="status offline">OFFLINE</span>
+                <p>Server Down</p>
             </a>
 
             <a href="#" class="server-card">
+                <span class="status offline">OFFLINE</span>
                 <h3>RoarZone</h3>
-                <p>Media Content</p>
-                <span class="status offline">OFFLINE</span>
+                <p>Not Available</p>
             </a>
 
             <a href="#" class="server-card">
+                <span class="status offline">OFFLINE</span>
                 <h3>Movie Hub</h3>
-                <p>Collection</p>
-                <span class="status offline">OFFLINE</span>
+                <p>Maintenance</p>
             </a>
 
             <a href="#" class="server-card">
+                <span class="status online">ONLINE</span>
                 <h3>TV Plus</h3>
                 <p>Shows</p>
-                <span class="status online">ONLINE</span>
             </a>
 
             <a href="#" class="server-card">
+                <span class="status online">ONLINE</span>
                 <h3>Anime World</h3>
                 <p>Anime</p>
-                <span class="status online">ONLINE</span>
             </a>
 
             <a href="#" class="server-card">
+                <span class="status offline">OFFLINE</span>
                 <h3>Sports Live</h3>
                 <p>Sports</p>
-                <span class="status offline">OFFLINE</span>
             </a>
 
         </div>
