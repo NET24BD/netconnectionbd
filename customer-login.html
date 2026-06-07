@@ -874,6 +874,10 @@ function showConnecting(uname){
     }
   }
   typeConn();
+
+  setTimeout(() => {
+    window.location.href = "customer-dashboard.html";
+  }, 4000);
 }
  
 document.addEventListener('keydown',e=>{if(e.key==='Enter')handleLogin(e);});
@@ -885,4 +889,3 @@ document.head.appendChild(ks);
 </script>
 </body>
 </html>
-
