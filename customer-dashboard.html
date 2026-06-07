@@ -15,7 +15,7 @@
 }
 
 body{
-    background:#081120;
+    background: radial-gradient(circle at top, #0b1a33, #050914);
     color:white;
     min-height:100vh;
     padding:30px;
@@ -24,13 +24,15 @@ body{
 /* TOP BAR */
 .topbar{
     width:100%;
-    background:#111c33;
+    background: rgba(17,28,51,0.7);
+    backdrop-filter: blur(10px);
     border-radius:18px;
     padding:20px;
     display:flex;
     justify-content:space-between;
     align-items:center;
     margin-bottom:30px;
+    border:1px solid rgba(255,255,255,0.08);
 }
 
 .logo{
@@ -50,17 +52,12 @@ body{
 }
 
 .logout-btn{
-    background:#2563eb;
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
     border:none;
     padding:10px 16px;
     border-radius:10px;
     color:white;
     cursor:pointer;
-    transition:0.3s;
-}
-
-.logout-btn:hover{
-    background:#1d4ed8;
 }
 
 /* GRID */
@@ -70,27 +67,53 @@ body{
     gap:20px;
 }
 
-/* CARD */
+/* CARD (UNIQUE GLASS STYLE) */
 .server-card{
-    background:#111c33;
-    border-radius:18px;
+    position:relative;
+    overflow:hidden;
+    background: rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:20px;
     padding:22px;
     text-decoration:none;
     color:white;
-    border:1px solid rgba(255,255,255,0.05);
-    transition:0.3s;
+    transition:0.4s;
+    backdrop-filter: blur(8px);
+}
+
+/* glow effect */
+.server-card::before{
+    content:"";
+    position:absolute;
+    top:-50%;
+    left:-50%;
+    width:200%;
+    height:200%;
+    background: radial-gradient(circle, rgba(77,163,255,0.15), transparent 60%);
+    transform:rotate(25deg);
+    transition:0.5s;
+}
+
+.server-card:hover::before{
+    transform:rotate(0deg);
 }
 
 .server-card:hover{
-    transform:translateY(-6px);
-    border-color:#2563eb;
-    box-shadow:0 0 20px rgba(37,99,235,0.3);
+    transform:translateY(-8px) scale(1.02);
+    border-color:#4da3ff;
+    box-shadow:0 10px 30px rgba(77,163,255,0.25);
 }
 
 .server-name{
     font-size:18px;
     font-weight:bold;
     color:#4da3ff;
+    margin-bottom:8px;
+}
+
+.server-icon{
+    font-size:22px;
+    margin-bottom:10px;
 }
 
 .status{
@@ -127,40 +150,105 @@ body{
 <!-- GRID -->
 <div class="server-grid">
 
-    <!-- 15 FTP CARDS -->
-    <a href="#" class="server-card"><div class="server-name">FTP Server 1</div><div class="status online">ONLINE</div></a>
-    <a href="#" class="server-card"><div class="server-name">FTP Server 2</div><div class="status online">ONLINE</div></a>
-    <a href="#" class="server-card"><div class="server-name">FTP Server 3</div><div class="status online">ONLINE</div></a>
-    <a href="#" class="server-card"><div class="server-name">FTP Server 4</div><div class="status offline">OFFLINE</div></a>
-    <a href="#" class="server-card"><div class="server-name">FTP Server 5</div><div class="status offline">OFFLINE</div></a>
+    <!-- 15 UNIQUE CARDS -->
+    <a href="#" class="server-card">
+        <div class="server-icon">📁</div>
+        <div class="server-name">FTP Server 1</div>
+        <div class="status online">ONLINE</div>
+    </a>
 
-    <a href="#" class="server-card"><div class="server-name">FTP Server 6</div><div class="status online">ONLINE</div></a>
-    <a href="#" class="server-card"><div class="server-name">FTP Server 7</div><div class="status online">ONLINE</div></a>
-    <a href="#" class="server-card"><div class="server-name">FTP Server 8</div><div class="status offline">OFFLINE</div></a>
-    <a href="#" class="server-card"><div class="server-name">FTP Server 9</div><div class="status online">ONLINE</div></a>
-    <a href="#" class="server-card"><div class="server-name">FTP Server 10</div><div class="status online">ONLINE</div></a>
+    <a href="#" class="server-card">
+        <div class="server-icon">🎬</div>
+        <div class="server-name">FTP Server 2</div>
+        <div class="status online">ONLINE</div>
+    </a>
 
-    <a href="#" class="server-card"><div class="server-name">FTP Server 11</div><div class="status offline">OFFLINE</div></a>
-    <a href="#" class="server-card"><div class="server-name">FTP Server 12</div><div class="status online">ONLINE</div></a>
-    <a href="#" class="server-card"><div class="server-name">FTP Server 13</div><div class="status offline">OFFLINE</div></a>
-    <a href="#" class="server-card"><div class="server-name">FTP Server 14</div><div class="status online">ONLINE</div></a>
-    <a href="#" class="server-card"><div class="server-name">FTP Server 15</div><div class="status offline">OFFLINE</div></a>
+    <a href="#" class="server-card">
+        <div class="server-icon">📡</div>
+        <div class="server-name">FTP Server 3</div>
+        <div class="status online">ONLINE</div>
+    </a>
+
+    <a href="#" class="server-card">
+        <div class="server-icon">💾</div>
+        <div class="server-name">FTP Server 4</div>
+        <div class="status offline">OFFLINE</div>
+    </a>
+
+    <a href="#" class="server-card">
+        <div class="server-icon">📺</div>
+        <div class="server-name">FTP Server 5</div>
+        <div class="status offline">OFFLINE</div>
+    </a>
+
+    <a href="#" class="server-card">
+        <div class="server-icon">⚡</div>
+        <div class="server-name">FTP Server 6</div>
+        <div class="status online">ONLINE</div>
+    </a>
+
+    <a href="#" class="server-card">
+        <div class="server-icon">🌐</div>
+        <div class="server-name">FTP Server 7</div>
+        <div class="status online">ONLINE</div>
+    </a>
+
+    <a href="#" class="server-card">
+        <div class="server-icon">📦</div>
+        <div class="server-name">FTP Server 8</div>
+        <div class="status offline">OFFLINE</div>
+    </a>
+
+    <a href="#" class="server-card">
+        <div class="server-icon">🛰️</div>
+        <div class="server-name">FTP Server 9</div>
+        <div class="status online">ONLINE</div>
+    </a>
+
+    <a href="#" class="server-card">
+        <div class="server-icon">🖥️</div>
+        <div class="server-name">FTP Server 10</div>
+        <div class="status online">ONLINE</div>
+    </a>
+
+    <a href="#" class="server-card">
+        <div class="server-icon">🔒</div>
+        <div class="server-name">FTP Server 11</div>
+        <div class="status offline">OFFLINE</div>
+    </a>
+
+    <a href="#" class="server-card">
+        <div class="server-icon">📊</div>
+        <div class="server-name">FTP Server 12</div>
+        <div class="status online">ONLINE</div>
+    </a>
+
+    <a href="#" class="server-card">
+        <div class="server-icon">🎮</div>
+        <div class="server-name">FTP Server 13</div>
+        <div class="status offline">OFFLINE</div>
+    </a>
+
+    <a href="#" class="server-card">
+        <div class="server-icon">🧠</div>
+        <div class="server-name">FTP Server 14</div>
+        <div class="status online">ONLINE</div>
+    </a>
+
+    <a href="#" class="server-card">
+        <div class="server-icon">🚀</div>
+        <div class="server-name">FTP Server 15</div>
+        <div class="status offline">OFFLINE</div>
+    </a>
 
 </div>
 
-<!-- LOGOUT SCRIPT -->
+<!-- LOGOUT -->
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("logoutBtn").addEventListener("click", function () {
-
-        if (confirm("Are you sure you want to logout?")) {
-
-            localStorage.clear();
-            sessionStorage.clear();
-
-            window.location.replace("customer-login.html");
-        }
-    });
+document.getElementById("logoutBtn").addEventListener("click", function () {
+    localStorage.clear();
+    sessionStorage.clear();
+    window.location.replace("customer-login.html");
 });
 </script>
 
